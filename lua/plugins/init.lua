@@ -120,7 +120,9 @@ require("lazy").setup({
     init = function()
       vim.g.barbar_auto_setup = false
     end,
-    opts = {},
+    opts = {
+      auto_hide = 1,
+    },
   },
 
   { "lewis6991/gitsigns.nvim", opts = {} },
