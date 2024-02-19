@@ -67,7 +67,7 @@ require("lazy").setup({
   },
 
   {
-    "nvim-lualine/lualine.nvim", -- status line
+    "nvim-lualine/lualine.nvim",      -- status line
     dependencies = {
       "kyazdani42/nvim-web-devicons", -- for filetype icons
     },
@@ -79,6 +79,10 @@ require("lazy").setup({
 
         -- color scheme
         theme = "tokyonight",
+      },
+      -- hide filename
+      sections = {
+        lualine_c = {},
       },
     },
   },
@@ -102,7 +106,7 @@ require("lazy").setup({
     "glepnir/lspsaga.nvim",
     dependencies = {
       "nvim-treesitter/nvim-treesitter", -- optional
-      "nvim-tree/nvim-web-devicons", -- optional
+      "nvim-tree/nvim-web-devicons",     -- optional
     },
     opts = {
       lightbulb = {
@@ -114,7 +118,7 @@ require("lazy").setup({
   {
     "romgrk/barbar.nvim",
     dependencies = {
-      "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+      "lewis6991/gitsigns.nvim",     -- OPTIONAL: for git status
       "nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
     },
     init = function()
@@ -125,13 +129,13 @@ require("lazy").setup({
     },
   },
 
-  { "lewis6991/gitsigns.nvim", opts = {} },
+  { "lewis6991/gitsigns.nvim",       opts = {} },
 })
 
 -- LSP related
-require("plugins.lspconfig") -- utilizes lsp
+require("plugins.lspconfig")   -- utilizes lsp
 require("plugins.completions") -- adds completions
-require("plugins.treesitter") -- better highlights
+require("plugins.treesitter")  -- better highlights
 
 -- QoL
 require("plugins.nvim-tree") -- file explorer
