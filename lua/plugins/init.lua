@@ -44,7 +44,21 @@ require("lazy").setup({
   },
 
   -- nvim-tree.lua
-  "nvim-tree/nvim-tree.lua",
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      view = {
+        adaptive_size = true,
+      },
+    },
+    init = function()
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+    end,
+    keys = {
+      { "<Space>e", "<cmd>NvimTreeFindFileToggle<CR>", desc = "File Explorer" },
+    },
+  },
 
   -- telescope.lua
   { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
@@ -67,7 +81,7 @@ require("lazy").setup({
   },
 
   {
-    "nvim-lualine/lualine.nvim",      -- status line
+    "nvim-lualine/lualine.nvim", -- status line
     dependencies = {
       "kyazdani42/nvim-web-devicons", -- for filetype icons
     },
@@ -106,7 +120,7 @@ require("lazy").setup({
     "glepnir/lspsaga.nvim",
     dependencies = {
       "nvim-treesitter/nvim-treesitter", -- optional
-      "nvim-tree/nvim-web-devicons",     -- optional
+      "nvim-tree/nvim-web-devicons", -- optional
     },
     opts = {
       lightbulb = {
@@ -118,7 +132,7 @@ require("lazy").setup({
   {
     "romgrk/barbar.nvim",
     dependencies = {
-      "lewis6991/gitsigns.nvim",     -- OPTIONAL: for git status
+      "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
       "nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
     },
     init = function()
@@ -129,14 +143,13 @@ require("lazy").setup({
     },
   },
 
-  { "lewis6991/gitsigns.nvim",       opts = {} },
+  { "lewis6991/gitsigns.nvim", opts = {} },
 })
 
 -- LSP related
-require("plugins.lspconfig")   -- utilizes lsp
+require("plugins.lspconfig") -- utilizes lsp
 require("plugins.completions") -- adds completions
-require("plugins.treesitter")  -- better highlights
+require("plugins.treesitter") -- better highlights
 
 -- QoL
-require("plugins.nvim-tree") -- file explorer
 require("plugins.telescope") -- file search
