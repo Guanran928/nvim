@@ -124,8 +124,11 @@ require("lazy").setup({
     },
     opts = {
       lightbulb = {
-        -- enable = false,
+        virtual_text = false,
       },
+    },
+    keys = {
+      { "<Space>a", "<cmd>Lspsaga code_action<CR>", desc = "Code Action" },
     },
   },
 
