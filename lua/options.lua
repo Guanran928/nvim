@@ -21,10 +21,6 @@ vim.cmd([[ set noswapfile ]])
 -- Put anything you want to happen only in Neovide here
 if vim.g.neovide then
   vim.o.guifont = "monospace:h12"
-  vim.g.neovide_padding_top = 12
-  vim.g.neovide_padding_bottom = 12
-  vim.g.neovide_padding_right = 12
-  vim.g.neovide_padding_left = 12
 
   -- Terminal-emulator-like copy/pasting
   local opts = { noremap = true, silent = true }
