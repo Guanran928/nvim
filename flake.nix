@@ -13,8 +13,12 @@
         pkgs = inputs.nixpkgs.legacyPackages.${system};
       in {
         packages.default = let
-          runtimeDeps = with pkgs; [gcc];
-        in (
+          runtimeDeps = with pkgs; [
+            # mason / tree-sitter
+            gcc
+            cargo
+          ];
+        in
           pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped
           (pkgs.neovimUtils.makeNeovimConfig
             {
@@ -25,8 +29,7 @@
             }
             // {
               wrapperArgs = ["--prefix" "PATH" ":" "${lib.makeBinPath runtimeDeps}"];
-            })
-        );
+            });
 
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = [
