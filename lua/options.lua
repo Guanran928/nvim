@@ -13,6 +13,8 @@ vim.wo.signcolumn = "yes"
 vim.o.undofile = true
 vim.o.clipboard = "unnamedplus"
 
+vim.o.showmode = false
+
 vim.cmd([[ set noswapfile ]])
 
 -- Neovide
