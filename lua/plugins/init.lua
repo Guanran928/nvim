@@ -43,6 +43,18 @@ require("lazy").setup({
     },
   },
 
+  {
+    -- I didn't figure out how to use null-ls/none-ls...
+    "sbdchd/neoformat",
+    init = function()
+      -- Prefer Alejandra for Nix files
+      vim.g.neoformat_enabled_nix = { "alejandra" }
+    end,
+    keys = {
+      { "<Space>lf", "<cmd>Neoformat<CR>", desc = "Format file" },
+    },
+  },
+
   -- nvim-tree.lua
   {
     "nvim-tree/nvim-tree.lua",
