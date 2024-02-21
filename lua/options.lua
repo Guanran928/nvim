@@ -1,24 +1,34 @@
-vim.opt.autowrite = true
-vim.opt.cursorline = true
+-- Better file reading
 vim.opt.autoread = true
+vim.opt.autowrite = true
 
-vim.opt.tabstop = 2
-vim.opt.shiftround = true
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+-- Line number
+vim.opt.cursorline = true
+vim.opt.number = true
+vim.opt.relativenumber = true
 
-vim.wo.number = true
-vim.wo.relativenumber = true
-vim.wo.signcolumn = "yes"
-vim.o.undofile = true
-vim.o.clipboard = "unnamedplus"
+-- Mouse
+vim.cmd([[   
+  aunmenu PopUp.How-to\ disable\ mouse
+  aunmenu PopUp.-1-
+]])
+vim.opt.mouse = "a"
 
-vim.o.showmode = false
-
+-- System integration
 vim.cmd([[ set noswapfile ]])
+vim.opt.clipboard = "unnamedplus"
+vim.opt.undofile = true
+
+-- Tab
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
+
+-- Visuals
+vim.opt.laststatus = 3
+vim.opt.showmode = false -- we already have lualine
+vim.opt.signcolumn = "yes" -- so it doesn't shift around
 
 -- Neovide
--- Put anything you want to happen only in Neovide here
 if vim.g.neovide then
   vim.o.guifont = "monospace:h12"
 
