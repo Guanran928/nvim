@@ -16,6 +16,7 @@
         cargo
       ];
     in {
+      ### nix {run,shell,build}
       packages.default =
         pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped
         (pkgs.neovimUtils.makeNeovimConfig {
@@ -26,6 +27,10 @@
           }
           // {wrapperArgs = ["--prefix" "PATH" ":" "${lib.makeBinPath runtimeDeps}"];});
 
+      ### nix fmt
+      formatter = inputs.nixpkgs.legacyPackages.${system}.alejandra;
+
+      ### nix develop
       devShells.default = pkgs.mkShell {
         nativeBuildInputs = with pkgs; [
           stylua
