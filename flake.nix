@@ -1,5 +1,5 @@
 {
-  description = "Guanran928's nvim config";
+  description = "Guanran928's Neovim configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -7,33 +7,29 @@
   };
 
   outputs = inputs:
-    inputs.flake-utils.lib.eachDefaultSystem (
-      system: let
-        inherit (inputs.nixpkgs) lib;
-        pkgs = inputs.nixpkgs.legacyPackages.${system};
-        runtimeDeps = with pkgs; [
-          # mason / tree-sitter
-          gcc
-          cargo
-        ];
-      in {
-        packages.default =
-          pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped
-          (pkgs.neovimUtils.makeNeovimConfig {
-              customRC = ''
-                set runtimepath^=${./.}
-                source ${./.}/init.lua
-              '';
-            }
-            // {
-              wrapperArgs = ["--prefix" "PATH" ":" "${lib.makeBinPath runtimeDeps}"];
-            });
+    inputs.flake-utils.lib.eachDefaultSystem (system: let
+      inherit (inputs.nixpkgs) lib;
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
+      runtimeDeps = with pkgs; [
+        # mason / tree-sitter
+        gcc
+        cargo
+      ];
+    in {
+      packages.default =
+        pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped
+        (pkgs.neovimUtils.makeNeovimConfig {
+            customRC = ''
+              set runtimepath^=${./.}
+              source ${./.}/init.lua
+            '';
+          }
+          // {wrapperArgs = ["--prefix" "PATH" ":" "${lib.makeBinPath runtimeDeps}"];});
 
-        devShells.default = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [
-            stylua
-          ];
-        };
-      }
-    );
+      devShells.default = pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [
+          stylua
+        ];
+      };
+    });
 }
