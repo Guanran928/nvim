@@ -28,7 +28,7 @@
           // {wrapperArgs = ["--prefix" "PATH" ":" "${lib.makeBinPath runtimeDeps}"];});
 
       ### nix fmt
-      formatter = inputs.nixpkgs.legacyPackages.${system}.alejandra;
+      formatter = pkgs.alejandra;
 
       ### nix develop
       devShells.default = pkgs.mkShell {
