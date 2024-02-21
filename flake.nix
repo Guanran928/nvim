@@ -11,17 +11,15 @@
       system: let
         inherit (inputs.nixpkgs) lib;
         pkgs = inputs.nixpkgs.legacyPackages.${system};
+        runtimeDeps = with pkgs; [
+          # mason / tree-sitter
+          gcc
+          cargo
+        ];
       in {
-        packages.default = let
-          runtimeDeps = with pkgs; [
-            # mason / tree-sitter
-            gcc
-            cargo
-          ];
-        in
+        packages.default =
           pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped
-          (pkgs.neovimUtils.makeNeovimConfig
-            {
+          (pkgs.neovimUtils.makeNeovimConfig {
               customRC = ''
                 set runtimepath^=${./.}
                 source ${./.}/init.lua
@@ -32,8 +30,8 @@
             });
 
         devShells.default = pkgs.mkShell {
-          nativeBuildInputs = [
-            pkgs.stylua
+          nativeBuildInputs = with pkgs; [
+            stylua
           ];
         };
       }
