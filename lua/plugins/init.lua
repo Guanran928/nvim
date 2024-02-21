@@ -12,6 +12,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  performance = {
+    rtp = {
+      reset = false
+    }
+  },
 
   -- completions.lua
   {
