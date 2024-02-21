@@ -1,6 +1,9 @@
 return {
   "nvim-telescope/telescope.nvim",
-  dependencies = { "nvim-lua/plenary.nvim" },
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-tree/nvim-web-devicons",
+  },
   opts = {},
   keys = {
     { "<Space>f", "<cmd>Telescope find_files<CR>", desc = "Find files" },

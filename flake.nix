@@ -14,6 +14,10 @@
         # mason / tree-sitter
         gcc
         cargo
+
+        # telescope
+        ripgrep
+        fd
       ];
     in {
       ### nix {run,shell,build}
