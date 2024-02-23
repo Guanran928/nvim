@@ -14,6 +14,10 @@ vim.cmd([[
 ]])
 vim.opt.mouse = "a"
 
+-- Scrolling
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+
 -- System integration
 vim.cmd([[ set noswapfile ]])
 vim.opt.clipboard = "unnamedplus"
