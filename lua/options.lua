@@ -18,6 +18,10 @@ vim.opt.mouse = "a"
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 
+-- Searching
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 -- System integration
 vim.cmd([[ set noswapfile ]])
 vim.opt.clipboard = "unnamedplus"
