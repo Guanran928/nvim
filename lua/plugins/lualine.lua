@@ -1,7 +1,7 @@
 return {
   "nvim-lualine/lualine.nvim", -- status line
   dependencies = {
-    "kyazdani42/nvim-web-devicons", -- for filetype icons
+    "nvim-tree/nvim-web-devicons", -- for filetype icons
   },
   opts = {
     options = {
