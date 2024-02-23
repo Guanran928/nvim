@@ -2,8 +2,10 @@
 vim.opt.autoread = true
 vim.opt.autowrite = true
 
--- Line number
+-- Cursorline
 vim.opt.cursorline = true
+
+-- Line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -23,27 +25,25 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- System integration
-vim.cmd([[ set noswapfile ]])
 vim.opt.clipboard = "unnamedplus"
+vim.opt.swapfile = false
 vim.opt.undofile = true
 
--- Tab
+-- Tab settings
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 
 -- Visuals
 vim.opt.laststatus = 3
-vim.opt.showmode = false -- we already have lualine
-vim.opt.signcolumn = "yes" -- so it doesn't shift around
+vim.opt.showmode = false -- Handled by lualine
+vim.opt.signcolumn = "yes" -- Prevents shifting
 
--- Neovide
+-- Neovide specific settings
 if vim.g.neovide then
-  vim.o.guifont = "monospace:h12"
+  vim.opt.guifont = "monospace:h12"
 
   -- Terminal-emulator-like copy/pasting
-  local opts = { noremap = true, silent = true }
-  local keymap = vim.api.nvim_set_keymap
-  keymap("n", "<C-C>", '"*y :let @+=@*<CR>', opts)
-  keymap("n", "<C-V>", '"+p', opts)
+  vim.api.nvim_set_keymap("n", "<C-C>", '"+y', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "<C-V>", '"+p', { noremap = true, silent = true })
 end
