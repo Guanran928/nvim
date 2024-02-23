@@ -8,9 +8,6 @@ return {
       -- disable separators
       section_separators = "",
       component_separators = "",
-
-      -- color scheme
-      theme = "tokyonight",
     },
     -- hide filename
     sections = {
