@@ -13,7 +13,8 @@ return {
     "rafamadriz/friendly-snippets", -- pre-configured snippet texts
     "saadparwaiz1/cmp_luasnip", -- nvim-cmp source
   },
-  init = function()
+  event = { "InsertEnter", "CmdlineEnter" },
+  opts = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
     local has_words_before = function()
@@ -24,25 +25,14 @@ return {
 
     require("mason").setup()
     require("luasnip.loaders.from_vscode").lazy_load()
-    require("cmp").setup({
+
+    cmp.setup({
       -- keybinds
-      mapping = cmp.mapping.preset.insert({
-        -- unsure
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-o>"] = cmp.mapping.complete(),
-        ["<C-e>"] = cmp.mapping.abort(),
-
-        -- return to confirm
-        ["<CR>"] = cmp.mapping.confirm({ select = false }),
-
-        -- tab to select prev/next option
-        -- see: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
+      -- see: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
+      mapping = {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
-          -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-          -- that way you will only jump inside the snippet region
           elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
           elseif has_words_before() then
@@ -51,6 +41,7 @@ return {
             fallback()
           end
         end, { "i", "s" }),
+
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
@@ -60,7 +51,7 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-      }),
+      },
 
       -- snippet engine
       snippet = {
@@ -69,13 +60,29 @@ return {
         end,
       },
 
-      -- snippet source
+      -- completion source
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" },
-      }, {
         { name = "buffer" },
         { name = "path" },
+      }),
+    })
+
+    -- Use buffer source for `/` and `?`
+    cmp.setup.cmdline({ "/", "?" }, {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = "buffer" },
+      },
+    })
+
+    -- Use cmdline & path source for ':'
+    cmp.setup.cmdline(":", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = "path" },
+        { name = "cmdline" },
       }),
     })
   end,
