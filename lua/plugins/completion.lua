@@ -51,6 +51,8 @@ return {
             fallback()
           end
         end, { "i", "s" }),
+
+        ['<CR>'] = cmp.mapping.confirm(),
       },
 
       -- snippet engine
