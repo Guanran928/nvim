@@ -52,7 +52,9 @@ return {
           end
         end, { "i", "s" }),
 
-        ['<CR>'] = cmp.mapping.confirm(),
+        ["<CR>"] = cmp.mapping.confirm(),
+        ["<Up>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
+        ["<Down>"] = cmp.mapping.select_next_item({ behavior = "select" }),
       },
 
       -- snippet engine
