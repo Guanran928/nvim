@@ -14,6 +14,7 @@
         # mason / tree-sitter
         gcc
         cargo
+        nodejs
 
         # telescope
         ripgrep
