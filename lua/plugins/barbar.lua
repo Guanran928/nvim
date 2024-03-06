@@ -10,4 +10,6 @@ return {
   opts = {
     auto_hide = 1,
   },
+
+  enabled = false,
 }
