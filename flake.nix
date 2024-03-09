@@ -3,13 +3,25 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ### De-dupe flake dependencies
+    systems.url = "github:nix-systems/default";
   };
 
   outputs = inputs:
     inputs.flake-utils.lib.eachDefaultSystem (system: let
       inherit (inputs.nixpkgs) lib;
       pkgs = inputs.nixpkgs.legacyPackages.${system};
+      treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
       runtimeDeps = with pkgs; [
         # mason / tree-sitter
         gcc
@@ -33,7 +45,10 @@
           // {wrapperArgs = ["--prefix" "PATH" ":" "${lib.makeBinPath runtimeDeps}"];});
 
       ### nix fmt
-      formatter = pkgs.alejandra;
+      formatter = treefmtEval.config.build.wrapper;
+
+      ### nix flake check
+      checks = {formatting = treefmtEval.config.build.check inputs.self;};
 
       ### nix develop
       devShells.default = pkgs.mkShell {
