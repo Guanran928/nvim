@@ -22,33 +22,24 @@
       inherit (inputs.nixpkgs) lib;
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+
+      runtimeDeps = with pkgs; [
+        # mason / tree-sitter
+        gcc
+        cargo
+        nodejs
+
+        # telescope
+        ripgrep
+        fd
+      ];
+      src = lib.fileset.toSource {
+        fileset = lib.fileset.fileFilter (file: file.hasExt "lua") ./.;
+        root = ./.;
+      };
     in {
       ### nix {run,shell,build}
-      packages.default = let
-        runtimeDeps = with pkgs; [
-          # mason / tree-sitter
-          gcc
-          cargo
-          nodejs
-
-          # telescope
-          ripgrep
-          fd
-        ];
-
-        src = lib.fileset.toSource {
-          fileset = lib.fileset.fileFilter (file: file.hasExt "lua") ./.;
-          root = ./.;
-        };
-      in
-        pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped
-        (pkgs.neovimUtils.makeNeovimConfig {
-            customRC = ''
-              set runtimepath^=${src}
-              source ${src}/init.lua
-            '';
-          }
-          // {wrapperArgs = ["--prefix" "PATH" ":" "${lib.makeBinPath runtimeDeps}"];});
+      packages.default = pkgs.callPackage ./package.nix {inherit runtimeDeps src;};
 
       ### nix fmt
       formatter = treefmtEval.config.build.wrapper;
