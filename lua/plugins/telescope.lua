@@ -5,6 +5,7 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   opts = {},
+  cmd = "Telescope",
   keys = {
     { "<Space>f", "<cmd>Telescope find_files<CR>", desc = "Find files" },
     { "<Space><Space>", "<cmd>Telescope oldfiles<CR>", desc = "Recent files" },
