@@ -3,14 +3,24 @@ return {
   build = ":TSUpdate",
   opts = {
     ensure_installed = {
-      "nix",
+      "bash",
+      "c",
+      "diff",
+      "html",
       "lua",
+      "luadoc",
+      "markdown",
+      "nix",
       "vim",
+      "vimdoc",
     },
 
-    sync_install = true,
     auto_install = true,
     highlight = { enable = true },
     indent = { enable = true },
   },
+  config = function(_, opts)
+    require("nvim-treesitter.install").prefer_git = true
+    require("nvim-treesitter.configs").setup(opts)
+  end,
 }
