@@ -10,6 +10,6 @@ return {
     vim.g.loaded_netrwPlugin = 1
   end,
   keys = {
-    { "<Space>e", "<cmd>NvimTreeFindFileToggle<CR>", desc = "File Explorer" },
+    { "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", desc = "File Explorer" },
   },
 }

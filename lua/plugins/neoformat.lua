@@ -9,6 +9,6 @@ return {
     vim.g.neoformat_enabled_nix = { "alejandra" }
   end,
   keys = {
-    { "<Space>lf", "<cmd>Neoformat<CR>", desc = "Format file" },
+    { "<leader>lf", "<cmd>Neoformat<CR>", desc = "Format file" },
   },
 }

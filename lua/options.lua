@@ -1,3 +1,7 @@
+-- Leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- Better file reading
 vim.opt.autoread = true
 vim.opt.autowrite = true

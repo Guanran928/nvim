@@ -7,8 +7,8 @@ return {
   opts = {},
   cmd = "Telescope",
   keys = {
-    { "<Space>f", "<cmd>Telescope find_files<CR>", desc = "Find files" },
-    { "<Space><Space>", "<cmd>Telescope oldfiles<CR>", desc = "Recent files" },
-    { "<Space>sg", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
+    { "<leader>f", "<cmd>Telescope find_files<CR>", desc = "Find files" },
+    { "<leader><leader>", "<cmd>Telescope oldfiles<CR>", desc = "Recent files" },
+    { "<leader>sg", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
   },
 }

@@ -11,6 +11,6 @@ return {
     },
   },
   keys = {
-    { "<Space>a", "<cmd>Lspsaga code_action<CR>", desc = "Code Action" },
+    { "<leader>a", "<cmd>Lspsaga code_action<CR>", desc = "Code Action" },
   },
 }
