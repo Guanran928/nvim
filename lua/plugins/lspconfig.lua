@@ -16,20 +16,12 @@ return {
       capabilities = capabilities,
     })
 
+    require("lspconfig").pyright.setup({
+      capabilities = capabilities,
+    })
+
     require("lspconfig").nil_ls.setup({
       capabilities = capabilities,
-      settings = {
-        ["nil"] = {
-          formatting = {
-            command = { "alejandra" },
-          },
-          nix = {
-            flake = {
-              autoArchive = true,
-            },
-          },
-        },
-      },
     })
   end,
 }
