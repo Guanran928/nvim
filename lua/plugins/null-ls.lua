@@ -6,9 +6,10 @@ return {
 
     null_ls.setup({
       sources = {
-        null_ls.builtins.formatting.alejandra,
-        null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.nixfmt,
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.prettier
       },
     })
   end,
