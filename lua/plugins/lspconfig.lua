@@ -23,5 +23,9 @@ return {
     require("lspconfig").nil_ls.setup({
       capabilities = capabilities,
     })
+
+    require("lspconfig").gopls.setup({
+      capabilities = capabilities,
+    })
   end,
 }
