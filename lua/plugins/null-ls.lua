@@ -15,7 +15,7 @@ return {
   end,
   keys = {
     {
-      "<leader>lf",
+      "<leader>f",
       function()
         vim.lsp.buf.format()
       end,

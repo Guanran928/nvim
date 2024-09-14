@@ -6,12 +6,19 @@ return {
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
+    "saadparwaiz1/cmp_luasnip",
     "neovim/nvim-lspconfig",
 
     -- Snippets
-    "L3MON4D3/LuaSnip", -- snippet engine
-    "rafamadriz/friendly-snippets", -- pre-configured snippet texts
-    "saadparwaiz1/cmp_luasnip", -- nvim-cmp source
+    {
+      "L3MON4D3/LuaSnip", -- snippet engine
+      dependencies = {
+        "rafamadriz/friendly-snippets", -- pre-configured snippet texts
+        config = function()
+          require("luasnip.loaders.from_vscode").lazy_load()
+        end,
+      },
+    },
   },
   event = { "InsertEnter", "CmdlineEnter" },
   opts = function()
@@ -23,8 +30,6 @@ return {
       return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
     end
 
-    require("luasnip.loaders.from_vscode").lazy_load()
-
     cmp.setup({
       -- keybinds
       -- see: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
@@ -32,10 +37,8 @@ return {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          elseif has_words_before() then
-            cmp.complete()
+          elseif luasnip.locally_jumpable(1) then
+            luasnip.jump(1)
           else
             fallback()
           end
@@ -44,14 +47,27 @@ return {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
+          elseif luasnip.locally_jumpable(-1) then
             luasnip.jump(-1)
           else
             fallback()
           end
         end, { "i", "s" }),
 
-        ["<CR>"] = cmp.mapping.confirm(),
+        ["<CR>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            if luasnip.expandable() then
+              luasnip.expand()
+            else
+              cmp.confirm({
+                select = true,
+              })
+            end
+          else
+            fallback()
+          end
+        end),
+
         ["<Up>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
         ["<Down>"] = cmp.mapping.select_next_item({ behavior = "select" }),
       },

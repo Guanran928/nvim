@@ -13,8 +13,11 @@ vim.opt.cursorline = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- Breakindent
+vim.opt.breakindent = true
+
 -- Mouse
-vim.cmd([[   
+vim.cmd([[
   aunmenu PopUp.How-to\ disable\ mouse
   aunmenu PopUp.-1-
 ]])
@@ -29,7 +32,10 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- System integration
-vim.opt.clipboard = "unnamedplus"
+-- https://github.com/nvim-lua/kickstart.nvim/blob/7201dc480134f41dd1be1f8f9b8f8470aac82a3b/init.lua#L113-L119
+vim.schedule(function()
+  vim.opt.clipboard = "unnamedplus"
+end)
 vim.opt.swapfile = false
 vim.opt.undofile = true
 
@@ -42,12 +48,3 @@ vim.opt.tabstop = 2
 vim.opt.laststatus = 3
 vim.opt.showmode = false -- Handled by lualine
 vim.opt.signcolumn = "yes" -- Prevents shifting
-
--- Neovide specific settings
-if vim.g.neovide then
-  vim.opt.guifont = "monospace:h12"
-
-  -- Terminal-emulator-like copy/pasting
-  vim.api.nvim_set_keymap("n", "<C-C>", '"+y', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap("n", "<C-V>", '"+p', { noremap = true, silent = true })
-end

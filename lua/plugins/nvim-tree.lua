@@ -2,7 +2,10 @@ return {
   "nvim-tree/nvim-tree.lua",
   opts = {
     view = {
-      adaptive_size = true,
+      side = "right",
+    },
+    renderer = {
+      symlink_destination = false, -- usually too long
     },
   },
   init = function()
