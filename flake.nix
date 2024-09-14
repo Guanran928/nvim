@@ -30,7 +30,8 @@
 
       ### nix develop
       devShells.default = pkgs.mkShellNoCC {
-        nativeBuildInputs = with pkgs; [
+        packages = with pkgs; [
+          lua-language-server
           stylua
         ];
       };
