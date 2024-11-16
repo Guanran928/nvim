@@ -18,5 +18,9 @@ return {
     require("lspconfig").gopls.setup({
       capabilities = capabilities,
     })
+
+    require("lspconfig").ts_ls.setup({
+      capabilities = capabilities,
+    })
   end,
 }
