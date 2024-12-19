@@ -47,4 +47,5 @@ vim.opt.tabstop = 2
 -- Visuals
 vim.opt.laststatus = 3
 vim.opt.showmode = false -- Handled by lualine
+vim.opt.cmdheight = 0 -- Remove gap between lualine and tmux
 vim.opt.signcolumn = "yes" -- Prevents shifting
