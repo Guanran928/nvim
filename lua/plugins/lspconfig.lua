@@ -1,25 +1,27 @@
 return {
   "neovim/nvim-lspconfig",
+  dependencies = { "saghen/blink.cmp" },
   init = function()
-    local capabilities = require("cmp_nvim_lsp").default_capabilities() -- needed for nvim-cmp
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
+    local lspconfig = require("lspconfig")
 
-    require("lspconfig").lua_ls.setup({
+    lspconfig.lua_ls.setup({
       capabilities = capabilities,
     })
 
-    require("lspconfig").ruff.setup({
+    lspconfig.pyright.setup({
       capabilities = capabilities,
     })
 
-    require("lspconfig").nil_ls.setup({
+    lspconfig.nil_ls.setup({
       capabilities = capabilities,
     })
 
-    require("lspconfig").gopls.setup({
+    lspconfig.gopls.setup({
       capabilities = capabilities,
     })
 
-    require("lspconfig").ts_ls.setup({
+    lspconfig.ts_ls.setup({
       capabilities = capabilities,
     })
   end,
