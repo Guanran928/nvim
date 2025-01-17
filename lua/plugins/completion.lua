@@ -5,5 +5,6 @@ return {
 
   opts = {
     keymap = { preset = "enter" },
+    completion = { list = { selection = { preselect = false } } },
   },
 }
