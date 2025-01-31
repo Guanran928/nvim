@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
   -- maintained fork of "norcalli/nvim-colorizer.lua"
   "catgoose/nvim-colorizer.lua",

@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
   "glepnir/lspsaga.nvim",
   lazy = false,
