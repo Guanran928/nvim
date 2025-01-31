@@ -1,5 +1,9 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  dependencies = {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "make",
+  },
   build = ":TSUpdate",
   opts = {
     ensure_installed = {
@@ -23,5 +27,6 @@ return {
   config = function(_, opts)
     require("nvim-treesitter.install").prefer_git = true
     require("nvim-treesitter.configs").setup(opts)
+    require("telescope").load_extension("fzf")
   end,
 }
