@@ -7,23 +7,26 @@ return {
       nix = { "nixfmt" },
       python = { "ruff" },
 
-      html = { "prettier" },
-      css = { "prettier" },
-      less = { "prettier" },
-      scss = { "prettier" },
       javascript = { "prettier" },
-      typescript = { "prettier" },
       javascriptreact = { "prettier" },
+      typescript = { "prettier" },
       typescriptreact = { "prettier" },
       vue = { "prettier" },
+      css = { "prettier" },
+      scss = { "prettier" },
+      less = { "prettier" },
+      html = { "prettier" },
       json = { "prettier" },
       jsonc = { "prettier" },
       yaml = { "prettier" },
+      markdown = { "prettier" },
+      ["markdown.mdx"] = { "prettier" },
+      graphql = { "prettier" },
+      handlebars = { "prettier" },
     },
 
-    format_on_save = {
+    format_after_save = {
       lsp_format = "fallback",
-      async = true,
     },
   },
   keys = {
