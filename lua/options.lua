@@ -49,3 +49,13 @@ vim.opt.laststatus = 3
 vim.opt.showmode = false -- Handled by lualine
 vim.opt.cmdheight = 0 -- Remove gap between lualine and tmux
 vim.opt.signcolumn = "yes" -- Prevents shifting
+
+-- Restore cursor after exit
+-- https://codeberg.org/dnkl/foot/issues/1891#issuecomment-2557228
+vim.api.nvim_create_autocmd("VimLeave", {
+  pattern = "*",
+  callback = function()
+    vim.opt.guicursor = ""
+    vim.fn.chansend(vim.v.stderr, "\x1b[ q")
+  end,
+})
