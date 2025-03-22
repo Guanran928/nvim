@@ -5,7 +5,7 @@ return {
     "tpope/vim-repeat",
   },
   opts = {},
-  init = function()
+  config = function()
     require("leap").create_default_mappings()
   end,
 }
