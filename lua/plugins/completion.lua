@@ -2,18 +2,21 @@
 return {
   "saghen/blink.cmp",
   version = "*",
+  event = "InsertEnter",
 
   dependencies = {
     "L3MON4D3/LuaSnip",
     version = "v2.*",
-    dependencies = { "rafamadriz/friendly-snippets" },
-
-    init = function()
-      local luasnip = require("luasnip")
-      luasnip.filetype_extend("javascriptreact", { "html" })
-      luasnip.filetype_extend("typescriptreact", { "html" })
-      require("luasnip.loaders.from_vscode").lazy_load()
-    end,
+    lazy = true,
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        local luasnip = require("luasnip")
+        luasnip.filetype_extend("javascriptreact", { "html" })
+        luasnip.filetype_extend("typescriptreact", { "html" })
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
+    },
   },
 
   opts = {

@@ -1,8 +1,9 @@
 ---@type LazyPluginSpec
 return {
   "neovim/nvim-lspconfig",
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   dependencies = { "saghen/blink.cmp" },
-  init = function()
+  config = function()
     local capabilities = require("blink.cmp").get_lsp_capabilities()
     local lspconfig = require("lspconfig")
 

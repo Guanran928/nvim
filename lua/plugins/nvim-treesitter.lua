@@ -1,11 +1,13 @@
 ---@type LazyPluginSpec
 return {
   "nvim-treesitter/nvim-treesitter",
+  build = ":TSUpdate",
+  event = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy" },
+  lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
   dependencies = {
     "nvim-telescope/telescope-fzf-native.nvim",
     build = "make",
   },
-  build = ":TSUpdate",
   opts = {
     ensure_installed = {
       "bash",

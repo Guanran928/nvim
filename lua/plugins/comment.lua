@@ -4,7 +4,7 @@ return {
   dependencies = {
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
-  event = { "BufReadPre", "BufNewFile" },
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   config = function()
     local context_commentstring_integration = require("ts_context_commentstring.integrations.comment_nvim")
 
