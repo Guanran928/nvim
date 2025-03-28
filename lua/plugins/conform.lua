@@ -7,6 +7,7 @@ return {
       lua = { "stylua" },
       nix = { "nixfmt" },
       python = { "ruff" },
+      toml = { "taplo" },
 
       javascript = { "prettier" },
       javascriptreact = { "prettier" },
