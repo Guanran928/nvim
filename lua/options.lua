@@ -59,3 +59,7 @@ vim.api.nvim_create_autocmd("VimLeave", {
     vim.fn.chansend(vim.v.stderr, "\x1b[ q")
   end,
 })
+
+vim.diagnostic.config({
+  virtual_lines = true,
+})
