@@ -4,8 +4,14 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+    },
   },
-  opts = {},
+  config = function()
+    require("telescope").load_extension("fzf")
+  end,
   cmd = "Telescope",
   keys = {
     { "<leader><leader>", "<cmd>Telescope oldfiles<CR>", desc = "Recent files" },
