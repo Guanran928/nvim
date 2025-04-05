@@ -2,10 +2,21 @@
 return {
   "lewis6991/gitsigns.nvim",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-  opts = {
-    current_line_blame = true,
-    current_line_blame_opts = {
-      delay = 100,
+  opts = {},
+  keys = {
+    {
+      "<leader>b",
+      function()
+        require("gitsigns").blame_line()
+      end,
+      desc = "Blame current line",
+    },
+    {
+      "<leader>B",
+      function()
+        require("gitsigns").blame()
+      end,
+      desc = "Blame",
     },
   },
 }
