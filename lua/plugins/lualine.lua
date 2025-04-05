@@ -10,9 +10,13 @@ return {
       section_separators = "",
       component_separators = "",
     },
-    -- hide filename
     sections = {
+      lualine_a = { "mode" },
+      lualine_b = { "diff", "diagnostics" },
       lualine_c = {},
+      lualine_x = { "filetype" },
+      lualine_y = {},
+      lualine_z = { "location" },
     },
   },
 }
