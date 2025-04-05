@@ -19,7 +19,7 @@ vim.opt.breakindent = true
 -- Mouse
 vim.cmd([[
   aunmenu PopUp.How-to\ disable\ mouse
-  aunmenu PopUp.-1-
+  aunmenu PopUp.-2-
 ]])
 vim.opt.mouse = "a"
 
