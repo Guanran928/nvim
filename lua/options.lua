@@ -61,8 +61,12 @@ vim.api.nvim_create_autocmd("VimLeave", {
 
 vim.diagnostic.config({
   virtual_text = {
-    spacing = 0,
+    -- HACK: There is a space before the diagnostic text for some
+    --       reason, therefore putting another space at the end of the
+    --       diagnostic text to center it.
     prefix = "",
+    suffix = " ",
+    virt_text_pos = "eol_right_align",
   },
   signs = {
     text = {
