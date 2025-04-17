@@ -48,6 +48,7 @@ vim.opt.tabstop = 2
 vim.opt.laststatus = 3
 vim.opt.cmdheight = 0 -- Remove gap between lualine and tmux
 vim.opt.signcolumn = "yes" -- Prevents shifting
+vim.opt.fillchars = { eob = " " } -- Remove tilde on empty lines
 
 -- Restore cursor after exit
 -- https://codeberg.org/dnkl/foot/issues/1891#issuecomment-2557228

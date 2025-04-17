@@ -59,6 +59,12 @@ return {
     })
   end,
   keys = {
-    { "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", desc = "File Explorer" },
+    {
+      "<leader>e",
+      function()
+        require("nvim-tree.api").tree.toggle({ find_file = true, focus = true })
+      end,
+      desc = "File Explorer",
+    },
   },
 }
