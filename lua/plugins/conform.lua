@@ -8,6 +8,7 @@ return {
       nix = { "nixfmt" },
       python = { "ruff" },
       toml = { "taplo" },
+      rust = { "rustfmt" },
 
       javascript = { "prettier" },
       javascriptreact = { "prettier" },
