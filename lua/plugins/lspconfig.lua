@@ -4,9 +4,6 @@ return {
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   dependencies = { "saghen/blink.cmp" },
   config = function()
-    local capabilities = require("blink.cmp").get_lsp_capabilities()
-    local lspconfig = require("lspconfig")
-
     local servers = {
       "gopls",
       "lua_ls",
@@ -18,9 +15,7 @@ return {
     }
 
     for _, lsp in pairs(servers) do
-      lspconfig[lsp].setup({
-        capabilities = capabilities,
-      })
+      vim.lsp.enable(lsp)
     end
   end,
 }
