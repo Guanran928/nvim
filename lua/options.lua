@@ -78,3 +78,5 @@ vim.diagnostic.config({
     },
   },
 })
+
+vim.lsp.inlay_hint.enable()
